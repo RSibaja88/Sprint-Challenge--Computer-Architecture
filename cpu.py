@@ -53,21 +53,21 @@ class CPU:
         # keeps it running until halted
         # setting up branch table
         self.branch_table = {
-            NOP: self.NOP, # no operation
-            HLT: self.HLT, # halt
-            PRN: self.PRN, # print
-            LDI: self.LDI, # load read data from mem to reg, LDI is indirect mode
-            MUL: self.MUL, # multiply
-            ADD: self.ADD, # addition
-            SUB: self.SUB, # subtract
+            NOP: self.NOP,   # no operation
+            HLT: self.HLT,   # halt
+            PRN: self.PRN,   # print
+            LDI: self.LDI,   # load read data from mem to reg, LDI is indirect mode
+            MUL: self.MUL,   # multiply
+            ADD: self.ADD,   # addition
+            SUB: self.SUB,   # subtract
             PUSH: self.PUSH, # inserting one operand at the top of the stack and it decrease the stack pointer register.
-            POP: self.POP, # deleting one operand from the top of the stack and it increase the stack pointer register.
+            POP: self.POP,   # deleting one operand from the top of the stack and it increase the stack pointer register.
             CALL: self.CALL, # call instruction clearly transfers control to another procedure
-            RET: self.RET, # returns to the instruction following the call.
-            CMP: self.CMP, # compares values and flags
-            JMP: self.JMP, # Jumps PC to an address in spec. register
-            JEQ: self.JEQ, # If E flag is set to true, 1, jump to that register
-            JNE: self.JNE # If E flag is cleared to false, 0, it jumps there
+            RET: self.RET,   # returns to the instruction following the call.
+            CMP: self.CMP,   # compares values and flags
+            JMP: self.JMP,   # Jumps PC to an address in spec. register
+            JEQ: self.JEQ,   # If E flag is set to true, 1, jump to that register
+            JNE: self.JNE    # If E flag is cleared to false, 0, it jumps there
         }
 
 #  A branch table or jump table is a method of transferring program control (branching) to another part of a program.
@@ -179,7 +179,7 @@ class CPU:
         self.reg[reg_num] = value
         self.reg[SP] += 1
 
-    def CALL(self, reg_a, reg_b):
+    def CALL(self, reg_a, reg_b): # call instruction clearly transfers control to another procedure
         return_addr = reg_b
 
         self.reg[SP] -= 1
@@ -190,7 +190,7 @@ class CPU:
 
         self.pc = subroutine_addr
 
-    def RET(self, reg_a, reg_b):
+    def RET(self, reg_a, reg_b): # returns to the instruction following the call.
         subroutine_addr = self.ram[self.reg[SP]]
         self.reg[SP] += 1
         self.pc = subroutine_addr
